@@ -34,30 +34,34 @@ if !exists("g:lifedash_folder")
     let g:lifedash_folder = substitute(globpath(&rtp, 'lifedata/'))
 endif
 
+" Setup map leader
+if !exists("g:lifedash_map_prefix")
+    let g:lifedash_map_prefix = '<leader>'
+
 
 """ MAPPINGS """
 """"""""""""""""
 " Append date and time in ISO format to end of line
-map <Leader>tD "=strftime("%FT%T%Z")<CR>p
+map <leader>tD "=strftime("%FT%T%Z")<CR>p
 
 " Mark a task finished and date it
-map <Leader>tf :s/[-/wx]/x/<CR>$a  <ESC><Leader>tD<ESC>0:noh<CR>
+map <leader>tf :s/[-/wx]/x/<CR>$a  <ESC><leader>tD<ESC>0:noh<CR>
 
 " Mark a task partially finished and date it
-map <Leader>tp :s/[-/wx]/\//<CR>$a  <ESC><Leader>tD<ESC>0:noh<CR>
+map <leader>tp :s/[-/wx]/\//<CR>$a  <ESC><leader>tD<ESC>0:noh<CR>
 
 " Mark a task waiting and date it
-map <Leader>tw :s/[-/wx]/w/<CR>$a  <ESC><Leader>tD<ESC>0:noh<CR>
+map <leader>tw :s/[-/wx]/w/<CR>$a  <ESC><leader>tD<ESC>0:noh<CR>
 
 " Mark task finished and move it to bottom of list
-map <Leader>tG <Leader>tfddGp''
+map <leader>tG <leader>tfddGp''
 
 " Star a task
-map <Leader>t* $a *<ESC>0:noh<CR>
+map <leader>t* $a *<ESC>0:noh<CR>
 
 " View starred/waiting tasks
-map <Leader>tv* :vimgrep /\*$/ %<CR>:botright copen<CR>:noh<CR>
-map <Leader>tvw :vimgrep /^\s\s*w/ %<CR>:botright copen<CR>:noh<CR>
+map <leader>tv* :vimgrep /\*$/ %<CR>:botright copen<CR>:noh<CR>
+map <leader>tvw :vimgrep /^\s\s*w/ %<CR>:botright copen<CR>:noh<CR>
 
 
 """ FUNCTIONS """
@@ -77,8 +81,8 @@ function! EditChecklist(name)
 endfunction
 
 " Generate new checklists
-map <Leader>tnd = :exe EditChecklist("daily")<CR>
-map <Leader>tnw = :exe EditChecklist("weekly")<CR>
-map <Leader>tnm = :exe EditChecklist("monthly")<CR>
-map <Leader>tny = :exe EditChecklist("yearly")<CR>
+map <leader>tnd = :exe EditChecklist("daily")<CR>
+map <leader>tnw = :exe EditChecklist("weekly")<CR>
+map <leader>tnm = :exe EditChecklist("monthly")<CR>
+map <leader>tny = :exe EditChecklist("yearly")<CR>
 

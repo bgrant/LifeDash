@@ -63,20 +63,17 @@ map <Leader>tvw :vimgrep /^\s\s*w/ %<CR>:botright copen<CR>:noh<CR>
 
 """ FUNCTIONS """
 """""""""""""""""
-
-let s:CL_FOLDER = "/Users/bgrant/documents/life/todo"
 function! EditChecklist(name)
-    let l:cl_paths = {"daily": s:CL_FOLDER . "/daily-" . strftime("%F"),
-                \ "weekly": s:CL_FOLDER . "/weekly-" . strftime("%F"),
-                \ "monthly": s:CL_FOLDER . "/monthly-" . strftime("%Y") . "-" .  strftime("%m"),
-                \ "yearly": s:CL_FOLDER . "/yearly-" . strftime("%Y")}
-    let l:path = l:cl_paths[a:name]
+    let l:data_paths = {"weekly": g:lifedash_folder . "/weekly-" . strftime("%F"),
+                \ "monthly": g:lifedash_folder . "/monthly-" . strftime("%Y") . "-" .  strftime("%m"),
+                \ "yearly": g:lifedash_folder . "/yearly-" . strftime("%Y")}
+    let l:path = l:data_paths[a:name]
     echo l:path
     if filereadable(l:path)
         execute "edit " . l:path
     else
         execute "edit " . l:path
-        execute "0read " . s:CL_FOLDER . "/templates/" . a:name
+        execute "0read " . g:lifedash_folder . "/templates/" . a:name
     endif
 endfunction
 

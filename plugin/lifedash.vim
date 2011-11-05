@@ -29,6 +29,11 @@ if exists('g:loaded_lifedash')
 endif
 let g:lifedash_loaded = 1
 
+" Setup default data folder
+if !exists("g:lifedash_folder")
+    let g:lifedash_folder = substitute(globpath(&rtp, 'lifedata/'))
+endif
+
 
 """ MAPPINGS """
 """"""""""""""""

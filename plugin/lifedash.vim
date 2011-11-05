@@ -53,11 +53,6 @@ map <Leader>tw :s/[-/wx]/w/<CR>$a  <ESC><Leader>tD<ESC>0:noh<CR>
 " Mark task finished and move it to bottom of list
 map <Leader>tG <Leader>tfddGp''
 
-" Mark a task waiting and move it to bottom of that project
-"map <Leader>tw :s/^\s\s*-/ w/<CR>$a  <ESC><Leader>tD<ESC>0dd/^$<CR>P<ESC>'':noh<CR>
-" Star a task and promote it to top of project
-"map <Leader>t* $a *<ESC>0dd?^[^ ]<CR>p:noh<CR>
-"
 " Star a task
 map <Leader>t* $a *<ESC>0:noh<CR>
 

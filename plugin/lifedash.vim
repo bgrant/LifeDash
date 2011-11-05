@@ -37,6 +37,7 @@ endif
 " Setup map leader
 if !exists("g:lifedash_map_prefix")
     let g:lifedash_map_prefix = '<leader>'
+endif
 
 
 """ MAPPINGS """

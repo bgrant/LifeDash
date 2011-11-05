@@ -37,7 +37,6 @@ endif
 
 """ MAPPINGS """
 """"""""""""""""
-
 " Append date and time in ISO format to end of line
 map <Leader>tD "=strftime("%FT%T%Z")<CR>p
 

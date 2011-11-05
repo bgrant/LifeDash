@@ -1,0 +1,34 @@
+YEARLY CHECKLIST
+================
+
+Health:
+ - physical exam
+ - eye exam
+ - dental cleaning
+ - dental cleaning
+ 
+Car:
+ - oil change
+ - oil change
+ - oil change
+ - oil change
+ 
+ - Pay insurance (Jan.)
+ - Inspection    (Jun.)
+ - Registration  (Jul.)
+ - Pay insurance (Jul.)
+ 
+Gifts (birthday and other):
+ - Alice     (Feb.  1st)
+ - Bob       (Mar.  2nd)
+ - Charles   (Mar. 15th)
+ - Dad       (Apr. 20th)
+ - Sister    (May  15th)
+ - Mom's day (May, second Sunday)
+ - Horatio   (May  22th)
+ - Dad's day (Jun., third Sunday)
+ - Mom       (Aug.  7th)
+ - Christmas (Dec. 25th):
+     - Mom
+     - Dad
+     - Sister

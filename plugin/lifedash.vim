@@ -19,8 +19,6 @@
 "   permissions and limitations under the License.
 
 
-let g:lifedash_version = "0.1"
-
 " Check if loaded
 if exists('g:loaded_lifedash')
   if g:lifedash_loaded == 0

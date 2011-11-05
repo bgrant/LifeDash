@@ -1,0 +1,13 @@
+*lifedash.txt*   A vim plugin for self-tracking and getting things done.
+
+``A goal without a plan is just a wish.'' - Antoine de Saint Exupéry
+
+========================================================================
+CONTENTS                                             *lifedash-contents*
+
+        1. Intro .............................. |LifeDashIntro|
+
+========================================================================
+1. Intro                                                 *LifeDashIntro*
+
+vim:tw=72:ts=8:ft=help:norl:

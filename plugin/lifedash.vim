@@ -62,8 +62,8 @@ map <Leader>tG <Leader>tfddGp''
 map <Leader>t* $a *<ESC>0:noh<CR>
 
 " View starred/waiting tasks
-map <Leader>tv* :vimgrep /\*$/ %<CR>,eo:noh<CR>
-map <Leader>tvw :vimgrep /^\s\s*w/ %<CR>,eo:noh<CR>
+map <Leader>tv* :vimgrep /\*$/ %<CR>:botright copen<CR>:noh<CR>
+map <Leader>tvw :vimgrep /^\s\s*w/ %<CR>:botright copen<CR>:noh<CR>
 
 
 """ FUNCTIONS """

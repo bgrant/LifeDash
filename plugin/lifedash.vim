@@ -1,4 +1,5 @@
-" A vim plugin for productivity and self-tracking.
+" LifeDash - A vim plugin for productivity and self-tracking.
+" ``A goal without a plan is just a wish.'' - Antoine de Saint Exupéry
 "
 " :author: Robert David Grant <robert.david.grant@gmail.com>
 " 

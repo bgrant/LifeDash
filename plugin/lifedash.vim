@@ -81,8 +81,8 @@ function! EditChecklist(name)
 endfunction
 
 " Generate new checklists
-map ,nd = :exe EditChecklist("daily")<CR>
-map ,nw = :exe EditChecklist("weekly")<CR>
-map ,nm = :exe EditChecklist("monthly")<CR>
-map ,ny = :exe EditChecklist("yearly")<CR>
+map <Leader>tnd = :exe EditChecklist("daily")<CR>
+map <Leader>tnw = :exe EditChecklist("weekly")<CR>
+map <Leader>tnm = :exe EditChecklist("monthly")<CR>
+map <Leader>tny = :exe EditChecklist("yearly")<CR>
 

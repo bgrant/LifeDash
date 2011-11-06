@@ -36,37 +36,40 @@ endif
 if !exists("g:lifedash_map_prefix")
     let g:lifedash_map_prefix = '<leader>'
 endif
+s:mapl = g:lifedash_map_prefix
 
 
 """ MAPPINGS """
 """"""""""""""""
 " Append date and time in ISO format to end of line
-map <leader>tD "=strftime("%FT%T%Z")<CR>p
+map ttD "=strftime("%FT%T%Z")<CR>p
 
 " Mark a task finished and date it
-map <leader>tf :s/[-/wx]/x/<CR>$a  <ESC><leader>tD<ESC>0:noh<CR>
+map ttf :s/[-/wx]/x/<CR>$a  <ESC>ttD<ESC>0:noh<CR>
 
 " Mark a task partially finished and date it
-map <leader>tp :s/[-/wx]/\//<CR>$a  <ESC><leader>tD<ESC>0:noh<CR>
+map ttp :s/[-/wx]/\//<CR>$a  <ESC>ttD<ESC>0:noh<CR>
 
 " Mark a task waiting and date it
-map <leader>tw :s/[-/wx]/w/<CR>$a  <ESC><leader>tD<ESC>0:noh<CR>
+map ttw :s/[-/wx]/w/<CR>$a  <ESC>ttD<ESC>0:noh<CR>
 
 " Mark task finished and move it to bottom of list
-map <leader>tG <leader>tfddGp''
+map ttG ttfddGp''
 
 " Star a task
-map <leader>t* $a *<ESC>0:noh<CR>
+map tt* $a *<ESC>0:noh<CR>
 
 " View starred/waiting tasks
-map <leader>tv* :vimgrep /\*$/ %<CR>:botright copen<CR>:noh<CR>
-map <leader>tvw :vimgrep /^\s\s*w/ %<CR>:botright copen<CR>:noh<CR>
+map ttv* :vimgrep /\*$/ %<CR>:botright copen<CR>:noh<CR>
+map ttvw :vimgrep /^\s\s*w/ %<CR>:botright copen<CR>:noh<CR>
 
 
 """ FUNCTIONS """
 """""""""""""""""
 function! EditChecklist(name)
-    let l:data_paths = {"weekly": g:lifedash_dir . "/weekly-" . strftime("%F"),
+    let l:data_paths = {
+                \"log": g:lifedash_dir . "/log-" . strftime("%F"),
+                \"weekly": g:lifedash_dir . "/weekly-" . strftime("%F"),
                 \ "monthly": g:lifedash_dir . "/monthly-" . strftime("%Y") . "-" .  strftime("%m"),
                 \ "yearly": g:lifedash_dir . "/yearly-" . strftime("%Y")}
     let l:path = l:data_paths[a:name]
@@ -80,8 +83,10 @@ function! EditChecklist(name)
 endfunction
 
 " Generate new checklists
-map <leader>tnd = :exe EditChecklist("daily")<CR>
-map <leader>tnw = :exe EditChecklist("weekly")<CR>
-map <leader>tnm = :exe EditChecklist("monthly")<CR>
-map <leader>tny = :exe EditChecklist("yearly")<CR>
+map tnt = :exe EditChecklist("todo")<CR>
+map tne = :exe EditChecklist("exercise")<CR>
+map tnd = :exe EditChecklist("daily")<CR>
+map tnw = :exe EditChecklist("weekly")<CR>
+map tnm = :exe EditChecklist("monthly")<CR>
+map tny = :exe EditChecklist("yearly")<CR>
 

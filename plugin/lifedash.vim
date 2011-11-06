@@ -28,8 +28,8 @@ endif
 let g:lifedash_loaded = 1
 
 " Setup default data folder
-if !exists("g:lifedash_folder")
-    let g:lifedash_folder = substitute(globpath(&rtp, 'lifedata/'))
+if !exists("g:lifedash_dir")
+    let g:lifedash_dir = substitute(globpath(&rtp, 'snippets/'), "\n", ',', 'g')
 endif
 
 " Setup map leader
@@ -66,16 +66,16 @@ map <leader>tvw :vimgrep /^\s\s*w/ %<CR>:botright copen<CR>:noh<CR>
 """ FUNCTIONS """
 """""""""""""""""
 function! EditChecklist(name)
-    let l:data_paths = {"weekly": g:lifedash_folder . "/weekly-" . strftime("%F"),
-                \ "monthly": g:lifedash_folder . "/monthly-" . strftime("%Y") . "-" .  strftime("%m"),
-                \ "yearly": g:lifedash_folder . "/yearly-" . strftime("%Y")}
+    let l:data_paths = {"weekly": g:lifedash_dir . "/weekly-" . strftime("%F"),
+                \ "monthly": g:lifedash_dir . "/monthly-" . strftime("%Y") . "-" .  strftime("%m"),
+                \ "yearly": g:lifedash_dir . "/yearly-" . strftime("%Y")}
     let l:path = l:data_paths[a:name]
     echo l:path
     if filereadable(l:path)
         execute "edit " . l:path
     else
         execute "edit " . l:path
-        execute "0read " . g:lifedash_folder . "/templates/" . a:name
+        execute "0read " . g:lifedash_dir . "/templates/" . a:name
     endif
 endfunction
 

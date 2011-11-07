@@ -1,2 +1,11 @@
 TODO
 ====
+
+Professional
+------------
+
+Personal
+--------
+
+DONE
+====

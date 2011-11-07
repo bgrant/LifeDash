@@ -36,7 +36,7 @@ endif
 if !exists("g:lifedash_map_prefix")
     let g:lifedash_map_prefix = '<leader>'
 endif
-s:mapl = g:lifedash_map_prefix
+let s:mapl = g:lifedash_map_prefix
 
 
 """ MAPPINGS """

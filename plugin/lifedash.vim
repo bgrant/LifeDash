@@ -70,12 +70,12 @@ execute s:map_cmd s:mapl.'v*' ':vimgrep /\*$/ %<CR>:botright copen<CR>:noh<CR>'
 execute s:map_cmd s:mapl.'vw' ':vimgrep /^\s\s*w/ %<CR>:botright copen<CR>:noh<CR>'
 
 " Generate new checklists
-execute s:map_cmd s:mapl.'nt' ':execute EditChecklist("todo")<CR>'
-execute s:map_cmd s:mapl.'ne' ':execute EditChecklist("exercise")<CR>'
-execute s:map_cmd s:mapl.'nd' ':execute EditChecklist("daily")<CR>'
-execute s:map_cmd s:mapl.'nw' ':execute EditChecklist("weekly")<CR>'
-execute s:map_cmd s:mapl.'nm' ':execute EditChecklist("monthly")<CR>'
-execute s:map_cmd s:mapl.'ny' ':execute EditChecklist("yearly")<CR>'
+execute s:map_cmd s:mapl.'nt' ':call EditChecklist("todo")<CR>'
+execute s:map_cmd s:mapl.'ne' ':call EditChecklist("exercise")<CR>'
+execute s:map_cmd s:mapl.'nd' ':call EditChecklist("daily")<CR>'
+execute s:map_cmd s:mapl.'nw' ':call EditChecklist("weekly")<CR>'
+execute s:map_cmd s:mapl.'nm' ':call EditChecklist("monthly")<CR>'
+execute s:map_cmd s:mapl.'ny' ':call EditChecklist("yearly")<CR>'
 
 
 """ FUNCTIONS """

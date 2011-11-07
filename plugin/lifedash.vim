@@ -29,7 +29,7 @@ let g:lifedash_loaded = 1
 
 " Setup default data folder
 if !exists("g:lifedash_dir")
-    let g:lifedash_dir = substitute(globpath(&rtp, 'snippets/'), "\n", ',', 'g')
+    let g:lifedash_dir = globpath(&rtp, 'lifedata')
 endif
 
 " Setup map leader

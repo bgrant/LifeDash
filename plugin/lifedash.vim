@@ -38,41 +38,44 @@ if !exists("g:lifedash_map_prefix")
 endif
 let s:mapl = g:lifedash_map_prefix
 
+" Make sure mappings are only active in .rst files
+let s:map_cmd = "nmap"
+
 
 """ MAPPINGS """
 """"""""""""""""
 " Paste date in ISO format and weekday
-execute 'nmap' s:mapl.'d' '"=strftime("%F (%A)")<CR>p'
+execute s:map_cmd s:mapl.'d' '"=strftime("%F (%A)")<CR>p'
 
 " Paste date and time in ISO format
-execute 'nmap' s:mapl.'D' '"=strftime("%FT%T%Z")<CR>p'
+execute s:map_cmd s:mapl.'D' '"=strftime("%FT%T%Z")<CR>p'
 
 " Mark a task finished and date it
-execute 'nmap' s:mapl.'f' ':s/[-/wx]/x/<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
+execute s:map_cmd s:mapl.'f' ':s/[-/wx]/x/<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
 
 " Mark a task partially finished and date it
-execute 'nmap' s:mapl.'p' ':s/[-/wx]/\//<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
+execute s:map_cmd s:mapl.'p' ':s/[-/wx]/\//<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
 
 " Mark a task waiting and date it
-execute 'nmap' s:mapl.'w :s/[-/wx]/w/<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
+execute s:map_cmd s:mapl.'w :s/[-/wx]/w/<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
 
 " Mark task finished and move it to bottom of list
-execute 'nmap' s:mapl.'G' s:mapl."fddGp''"
+execute s:map_cmd s:mapl.'G' s:mapl."fddGp''"
 
 " Star a task
-execute 'nmap' s:mapl.'*' '$a *<ESC>0:noh<CR>'
+execute s:map_cmd s:mapl.'*' '$a *<ESC>0:noh<CR>'
 
 " View starred/waiting task\s
-execute 'nmap' s:mapl.'v*' ':vimgrep /\*$/ %<CR>:botright copen<CR>:noh<CR>'
-execute 'nmap' s:mapl.'vw' ':vimgrep /^\s\s*w/ %<CR>:botright copen<CR>:noh<CR>'
+execute s:map_cmd s:mapl.'v*' ':vimgrep /\*$/ %<CR>:botright copen<CR>:noh<CR>'
+execute s:map_cmd s:mapl.'vw' ':vimgrep /^\s\s*w/ %<CR>:botright copen<CR>:noh<CR>'
 
 " Generate new checklists
-execute 'nmap' s:mapl.'nt' ':execute EditChecklist("todo")<CR>'
-execute 'nmap' s:mapl.'ne' ':execute EditChecklist("exercise")<CR>'
-execute 'nmap' s:mapl.'nd' ':execute EditChecklist("daily")<CR>'
-execute 'nmap' s:mapl.'nw' ':execute EditChecklist("weekly")<CR>'
-execute 'nmap' s:mapl.'nm' ':execute EditChecklist("monthly")<CR>'
-execute 'nmap' s:mapl.'ny' ':execute EditChecklist("yearly")<CR>'
+execute s:map_cmd s:mapl.'nt' ':execute EditChecklist("todo")<CR>'
+execute s:map_cmd s:mapl.'ne' ':execute EditChecklist("exercise")<CR>'
+execute s:map_cmd s:mapl.'nd' ':execute EditChecklist("daily")<CR>'
+execute s:map_cmd s:mapl.'nw' ':execute EditChecklist("weekly")<CR>'
+execute s:map_cmd s:mapl.'nm' ':execute EditChecklist("monthly")<CR>'
+execute s:map_cmd s:mapl.'ny' ':execute EditChecklist("yearly")<CR>'
 
 
 """ FUNCTIONS """

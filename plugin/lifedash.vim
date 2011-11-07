@@ -21,7 +21,7 @@
 
 """ SETUP """
 """""""""""""
-" Check if loaded, if nocompatible, current vim
+" Check if loaded, if nocompatible, if vim is current
 if exists('g:loaded_lifedash') || &cp || v:version < 700
     finish
 endif

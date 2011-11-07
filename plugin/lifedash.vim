@@ -21,9 +21,9 @@
 
 " Check if loaded
 if exists('g:loaded_lifedash')
-  if g:lifedash_loaded == 0
-    finish
-  endif
+    if g:lifedash_loaded == 0
+        finish
+    endif
 endif
 let g:lifedash_loaded = 1
 

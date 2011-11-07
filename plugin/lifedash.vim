@@ -77,6 +77,7 @@ execute s:map_cmd s:mapl.'nw' ':call EditChecklist("weekly")<CR>'
 execute s:map_cmd s:mapl.'nm' ':call EditChecklist("monthly")<CR>'
 execute s:map_cmd s:mapl.'ny' ':call EditChecklist("yearly")<CR>'
 
+execute s:map_cmd s:mapl.'nl' ':call NewLifeDash()<CR>'
 
 """ FUNCTIONS """
 """""""""""""""""
@@ -96,4 +97,20 @@ function! EditChecklist(name)
         execute "edit " . l:path
         execute "0read " . g:lifedash_dir . "/templates/" . a:name . ".rst"
     endif
+endfunction
+
+function! NewLifeDash()
+    call EditChecklist("yearly")
+    vsplit
+    call EditChecklist("monthly")
+    vsplit
+    call EditChecklist("todo")
+    wincmd l
+    split
+    call EditChecklist("exercise")
+    split
+    call EditChecklist("daily")
+    wincmd l
+    split
+    call EditChecklist("weekly")
 endfunction

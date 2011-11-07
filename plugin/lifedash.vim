@@ -39,37 +39,40 @@ let s:mapl = g:lifedash_map_prefix
 
 """ MAPPINGS """
 """"""""""""""""
-" Append date and time in ISO format to end of line
-nnoremap ttD "=strftime("%FT%T%Z")<CR>p
+" Paste date in ISO format and weekday
+execute 'nmap' s:mapl.'d' '"=strftime("%F (%A)")<CR>p'
+
+" Paste date and time in ISO format
+execute 'nmap' s:mapl.'D' '"=strftime("%FT%T%Z")<CR>p'
 
 " Mark a task finished and date it
-nnoremap ttf :s/[-/wx]/x/<CR>$a  <ESC>ttD<ESC>0:noh<CR>
+execute 'nmap' s:mapl.'f' ':s/[-/wx]/x/<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
 
 " Mark a task partially finished and date it
-nnoremap ttp :s/[-/wx]/\//<CR>$a  <ESC>ttD<ESC>0:noh<CR>
+execute 'nmap' s:mapl.'p' ':s/[-/wx]/\//<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
 
 " Mark a task waiting and date it
-nnoremap ttw :s/[-/wx]/w/<CR>$a  <ESC>ttD<ESC>0:noh<CR>
+execute 'nmap' s:mapl.'w :s/[-/wx]/w/<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
 
 " Mark task finished and move it to bottom of list
-nnoremap ttG ttfddGp''
+execute 'nmap' s:mapl.'G' s:mapl."fddGp''"
 
 " Star a task
-nnoremap tt* $a *<ESC>0:noh<CR>
+execute 'nmap' s:mapl.'*' '$a *<ESC>0:noh<CR>'
 
-" View starred/waiting tasks
-nnoremap ttv* :vimgrep /\*$/ %<CR>:botright copen<CR>:noh<CR>
-nnoremap ttvw :vimgrep /^\s\s*w/ %<CR>:botright copen<CR>:noh<CR>
+" View starred/waiting task\s
+execute 'nmap' s:mapl.'v*' ':vimgrep /\*$/ %<CR>:botright copen<CR>:noh<CR>'
+execute 'nmap' s:mapl.'vw' ':vimgrep /^\s\s*w/ %<CR>:botright copen<CR>:noh<CR>'
 
 
 function! EditChecklist(name)
     let l:data_paths = {
-                \"todo": g:lifedash_dir . "/todo-" . strftime("%F") . ".rst",
-                \"exercise": g:lifedash_dir . "/exercise-" . strftime("%F") . ".rst",
-                \"daily": g:lifedash_dir . "/daily-" . strftime("%F") . ".rst",
-                \"weekly": g:lifedash_dir . "/weekly-" . strftime("%V") . ".rst",
-                \ "monthly": g:lifedash_dir . "/monthly-" . strftime("%Y") . "-" .  strftime("%m") . ".rst",
-                \ "yearly": g:lifedash_dir . "/yearly-" . strftime("%Y") . ".rst"}
+        \"todo": g:lifedash_dir . "/todo-" . strftime("%F") . ".rst",
+        \"exercise": g:lifedash_dir . "/exercise-" . strftime("%F") . ".rst",
+        \"daily": g:lifedash_dir . "/daily-" . strftime("%F") . ".rst",
+        \"weekly": g:lifedash_dir . "/weekly-" . strftime("%V") . ".rst",
+        \ "monthly": g:lifedash_dir . "/monthly-" . strftime("%Y") . "-" .  strftime("%m") . ".rst",
+        \ "yearly": g:lifedash_dir . "/yearly-" . strftime("%Y") . ".rst"}
     let l:path = l:data_paths[a:name]
     echo l:path
     if filereadable(l:path)
@@ -81,10 +84,10 @@ function! EditChecklist(name)
 endfunction
 
 " Generate new checklists
-nnoremap tnt = :exe EditChecklist("todo")<CR>
-nnoremap tne = :exe EditChecklist("exercise")<CR>
-nnoremap tnd = :exe EditChecklist("daily")<CR>
-nnoremap tnw = :exe EditChecklist("weekly")<CR>
-nnoremap tnm = :exe EditChecklist("monthly")<CR>
-nnoremap tny = :exe EditChecklist("yearly")<CR>
+execute 'nmap' s:mapl.'nt' ':execute EditChecklist("todo")<CR>'
+execute 'nmap' s:mapl.'ne' ':execute EditChecklist("exercise")<CR>'
+execute 'nmap' s:mapl.'nd' ':execute EditChecklist("daily")<CR>'
+execute 'nmap' s:mapl.'nw' ':execute EditChecklist("weekly")<CR>'
+execute 'nmap' s:mapl.'nm' ':execute EditChecklist("monthly")<CR>'
+execute 'nmap' s:mapl.'ny' ':execute EditChecklist("yearly")<CR>'
 

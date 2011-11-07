@@ -64,21 +64,21 @@ map ttv* :vimgrep /\*$/ %<CR>:botright copen<CR>:noh<CR>
 map ttvw :vimgrep /^\s\s*w/ %<CR>:botright copen<CR>:noh<CR>
 
 
-""" FUNCTIONS """
-"""""""""""""""""
 function! EditChecklist(name)
     let l:data_paths = {
-                \"log": g:lifedash_dir . "/log-" . strftime("%F"),
-                \"weekly": g:lifedash_dir . "/weekly-" . strftime("%F"),
-                \ "monthly": g:lifedash_dir . "/monthly-" . strftime("%Y") . "-" .  strftime("%m"),
-                \ "yearly": g:lifedash_dir . "/yearly-" . strftime("%Y")}
+                \"todo": g:lifedash_dir . "/todo-" . strftime("%F") . ".rst",
+                \"exercise": g:lifedash_dir . "/exercise-" . strftime("%F") . ".rst",
+                \"daily": g:lifedash_dir . "/daily-" . strftime("%F") . ".rst",
+                \"weekly": g:lifedash_dir . "/weekly-" . strftime("%V") . ".rst",
+                \ "monthly": g:lifedash_dir . "/monthly-" . strftime("%Y") . "-" .  strftime("%m") . ".rst",
+                \ "yearly": g:lifedash_dir . "/yearly-" . strftime("%Y") . ".rst"}
     let l:path = l:data_paths[a:name]
     echo l:path
     if filereadable(l:path)
         execute "edit " . l:path
     else
         execute "edit " . l:path
-        execute "0read " . g:lifedash_dir . "/templates/" . a:name
+        execute "0read " . g:lifedash_dir . "/templates/" . a:name . ".rst"
     endif
 endfunction
 

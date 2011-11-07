@@ -42,26 +42,26 @@ let s:mapl = g:lifedash_map_prefix
 """ MAPPINGS """
 """"""""""""""""
 " Append date and time in ISO format to end of line
-noremap ttD "=strftime("%FT%T%Z")<CR>p
+nnoremap ttD "=strftime("%FT%T%Z")<CR>p
 
 " Mark a task finished and date it
-noremap ttf :s/[-/wx]/x/<CR>$a  <ESC>ttD<ESC>0:noh<CR>
+nnoremap ttf :s/[-/wx]/x/<CR>$a  <ESC>ttD<ESC>0:noh<CR>
 
 " Mark a task partially finished and date it
-noremap ttp :s/[-/wx]/\//<CR>$a  <ESC>ttD<ESC>0:noh<CR>
+nnoremap ttp :s/[-/wx]/\//<CR>$a  <ESC>ttD<ESC>0:noh<CR>
 
 " Mark a task waiting and date it
-noremap ttw :s/[-/wx]/w/<CR>$a  <ESC>ttD<ESC>0:noh<CR>
+nnoremap ttw :s/[-/wx]/w/<CR>$a  <ESC>ttD<ESC>0:noh<CR>
 
 " Mark task finished and move it to bottom of list
-noremap ttG ttfddGp''
+nnoremap ttG ttfddGp''
 
 " Star a task
-noremap tt* $a *<ESC>0:noh<CR>
+nnoremap tt* $a *<ESC>0:noh<CR>
 
 " View starred/waiting tasks
-noremap ttv* :vimgrep /\*$/ %<CR>:botright copen<CR>:noh<CR>
-noremap ttvw :vimgrep /^\s\s*w/ %<CR>:botright copen<CR>:noh<CR>
+nnoremap ttv* :vimgrep /\*$/ %<CR>:botright copen<CR>:noh<CR>
+nnoremap ttvw :vimgrep /^\s\s*w/ %<CR>:botright copen<CR>:noh<CR>
 
 
 function! EditChecklist(name)
@@ -83,10 +83,10 @@ function! EditChecklist(name)
 endfunction
 
 " Generate new checklists
-noremap tnt = :exe EditChecklist("todo")<CR>
-noremap tne = :exe EditChecklist("exercise")<CR>
-noremap tnd = :exe EditChecklist("daily")<CR>
-noremap tnw = :exe EditChecklist("weekly")<CR>
-noremap tnm = :exe EditChecklist("monthly")<CR>
-noremap tny = :exe EditChecklist("yearly")<CR>
+nnoremap tnt = :exe EditChecklist("todo")<CR>
+nnoremap tne = :exe EditChecklist("exercise")<CR>
+nnoremap tnd = :exe EditChecklist("daily")<CR>
+nnoremap tnw = :exe EditChecklist("weekly")<CR>
+nnoremap tnm = :exe EditChecklist("monthly")<CR>
+nnoremap tny = :exe EditChecklist("yearly")<CR>
 

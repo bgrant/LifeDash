@@ -19,6 +19,8 @@
 "   permissions and limitations under the License.
 
 
+""" SETUP """
+"""""""""""""
 " Check if loaded, if nocompatible, current vim
 if exists('g:loaded_lifedash') || &cp || v:version < 700
     finish
@@ -64,7 +66,17 @@ execute 'nmap' s:mapl.'*' '$a *<ESC>0:noh<CR>'
 execute 'nmap' s:mapl.'v*' ':vimgrep /\*$/ %<CR>:botright copen<CR>:noh<CR>'
 execute 'nmap' s:mapl.'vw' ':vimgrep /^\s\s*w/ %<CR>:botright copen<CR>:noh<CR>'
 
+" Generate new checklists
+execute 'nmap' s:mapl.'nt' ':execute EditChecklist("todo")<CR>'
+execute 'nmap' s:mapl.'ne' ':execute EditChecklist("exercise")<CR>'
+execute 'nmap' s:mapl.'nd' ':execute EditChecklist("daily")<CR>'
+execute 'nmap' s:mapl.'nw' ':execute EditChecklist("weekly")<CR>'
+execute 'nmap' s:mapl.'nm' ':execute EditChecklist("monthly")<CR>'
+execute 'nmap' s:mapl.'ny' ':execute EditChecklist("yearly")<CR>'
 
+
+""" FUNCTIONS """
+"""""""""""""""""
 function! EditChecklist(name)
     let l:data_paths = {
         \"todo": g:lifedash_dir . "/todo-" . strftime("%F") . ".rst",
@@ -82,12 +94,3 @@ function! EditChecklist(name)
         execute "0read " . g:lifedash_dir . "/templates/" . a:name . ".rst"
     endif
 endfunction
-
-" Generate new checklists
-execute 'nmap' s:mapl.'nt' ':execute EditChecklist("todo")<CR>'
-execute 'nmap' s:mapl.'ne' ':execute EditChecklist("exercise")<CR>'
-execute 'nmap' s:mapl.'nd' ':execute EditChecklist("daily")<CR>'
-execute 'nmap' s:mapl.'nw' ':execute EditChecklist("weekly")<CR>'
-execute 'nmap' s:mapl.'nm' ':execute EditChecklist("monthly")<CR>'
-execute 'nmap' s:mapl.'ny' ':execute EditChecklist("yearly")<CR>'
-

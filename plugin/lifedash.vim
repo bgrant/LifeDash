@@ -19,11 +19,9 @@
 "   permissions and limitations under the License.
 
 
-" Check if loaded
-if exists('g:loaded_lifedash')
-    if g:lifedash_loaded == 0
-        finish
-    endif
+" Check if loaded, if nocompatible, current vim
+if exists('g:loaded_lifedash') || &cp || v:version < 700
+    finish
 endif
 let g:lifedash_loaded = 1
 

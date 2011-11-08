@@ -28,8 +28,9 @@ endif
 let g:lifedash_loaded = 1
 
 " Setup default data folder
+let s:default_lifedash_dir = globpath(&rtp, 'lifedata')
 if !exists("g:lifedash_dir")
-    let g:lifedash_dir = globpath(&rtp, 'lifedata')
+    let g:lifedash_dir = s:default_lifedash_dir
 endif
 
 " Setup map leader
@@ -93,10 +94,14 @@ function! EditChecklist(name)
     let l:path = l:data_paths[a:name]
     echo l:path
     if filereadable(l:path)
-        execute "edit " . l:path
+        execute "edit" l:path
     else
-        execute "edit " . l:path
-        execute "0read " . g:lifedash_dir . "/templates/" . a:name . ".rst"
+        execute "edit" l:path
+        if isdirectory(g:lifedash_dir . "/templates")
+            execute "0read" g:lifedash_dir . "/templates/" . a:name . ".rst"
+        else
+           execute "0read" s:default_lifedash_dir . "/templates/" . a:name . ".rst"
+       endif
     endif
 endfunction
 

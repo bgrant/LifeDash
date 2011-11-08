@@ -9,7 +9,7 @@ CONTENTS                                              *lifedash-contents*
         2. Setup and Quickstart.......................... |LifeDashSetup|
         3. Usage ........................................ |LifeDashUsage|
         4. Mappings .................................. |LifeDashMappings|
-        5. More information .............................. |LifeDashInfo|
+        5. More information ............................ |LifeDashIssues|
         6. Acknowledgements .................. |LifeDashAcknowledgements|
         7. License .................................... |LifeDashLicense|
 
@@ -311,7 +311,7 @@ find on GitHub:
     https://github.com/bgrant/LifeDash
 <
 ========================================================================
-6. Acknowledgements                                        *LifeDashInfo*
+6. Acknowledgements                            *LifeDashAcknowledgements*
 
 Thanks to the authors of Vundle, Gundo, SnipMate
 and SnipMgr-- I looked at your code and your blogs

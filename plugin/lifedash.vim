@@ -77,6 +77,7 @@ execute s:map_cmd s:mapl.'nw' ':call EditChecklist("weekly")<CR>'
 execute s:map_cmd s:mapl.'nm' ':call EditChecklist("monthly")<CR>'
 execute s:map_cmd s:mapl.'ny' ':call EditChecklist("yearly")<CR>'
 
+" Populate new lifedash window
 execute s:map_cmd s:mapl.'nl' ':call NewLifeDash()<CR>'
 
 """ FUNCTIONS """

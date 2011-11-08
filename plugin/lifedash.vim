@@ -1,5 +1,6 @@
 " LifeDash - A vim plugin for self-tracking and getting things done.
-" ``A goal without a plan is just a wish.'' - Antoine de Saint Exupéry
+"
+"     A goal without a plan is just a wish. - Antoine de Saint Exupéry
 "
 " :author: Robert David Grant <robert.david.grant@gmail.com>
 " 
@@ -80,6 +81,7 @@ execute s:map_cmd s:mapl.'ny' ':call EditChecklist("yearly")<CR>'
 
 " Populate new lifedash window
 execute s:map_cmd s:mapl.'nl' ':call NewLifeDash()<CR>'
+
 
 """ FUNCTIONS """
 """""""""""""""""

@@ -3,11 +3,336 @@
 ``A goal without a plan is just a wish.'' - Antoine de Saint Exupéry
 
 ========================================================================
-CONTENTS                                             *lifedash-contents*
+CONTENTS                                              *lifedash-contents*
 
-        1. Intro .............................. |LifeDashIntro|
+        1. Intro ........................................ |LifeDashIntro|
+        2. Setup and Quickstart.......................... |LifeDashSetup|
+        3. Usage ........................................ |LifeDashUsage|
+        4. Mappings .................................. |LifeDashMappings|
+        5. More information .............................. |LifeDashInfo|
+        6. Acknowledgements .................. |LifeDashAcknowledgements|
+        7. License .................................... |LifeDashLicense|
 
 ========================================================================
-1. Intro                                                 *LifeDashIntro*
+1. Intro                                                  *LifeDashIntro*
+
+This plugin has evolved from my own life tracking over the last few
+years.  Essentially, the plugin allows you to easily create repeating
+checklists that you can use plan your work and track your progress
+daily, weekly, monthly, and yearly.  This has been inspired by various
+systems, including GTD, the Pomodoro technique, and Jerry Seinfeld's
+alleged productivity technique as discussed here:
+>
+    http://lifehacker.com/281626/jerry-seinfelds-productivity-secret
+<
+The default page layout created by the |<Leader>nl| mapping defines six
+windows laid out as follows:
+>
+    +---------------------------------------+
+    |         |  DAILY LOG     | WEEKLY LOG |
+    |         |                |            |
+    |         |                |            |
+    |         |----------------|            |
+    |         |  EXERCISE LOG  |            |
+    |  TODO   |                |------------|
+    |         |                | YEARLY LOG |
+    |         |----------------|            |
+    |         |  MONTHLY LOG   |            |
+    |         |                |            |
+    |         |                |            |
+    +---------------------------------------+
+<
+
+Each of the windows are backed by ReStructuredText files stored in the
+directory defined by |g:lifedash_dir|.  Currently, the files backing
+TODO, the DAILY LOG, and the EXERCISE LOG do not change; the plugin
+creates these files once and they are meant to be continually added to.
+However, for the WEEKLY LOG, the MONTHLY LOG, and the YEARLY LOG you
+should create a new file/checklist every week/month/year using the
+proper mappings (|<Leader>nw|, |<Leader>nm|, |<Leader>ny|).
+
+The |g:lifedash_dir| directory contains a 'templates' directory where
+you will find the templates for your checklists.  To create a new
+checklist, move to the corresponding window with |<C-w>| or your mouse,
+use the appropriate mapping (*<Leader>nw*, *<Leader>nm*, or
+*<Leader>ny*), and LifeDash will create a new checklist for you by
+reading the proper template from the templates directory.  You should
+edit these templates to suit the things you want to get done in each
+time frame.
+
+========================================================================
+2. Setup                                                  *LifeDashSetup*
+
+Install LifeDash through vundle.  It will make your life easier.
+>
+    https://github.com/gmarik/vundle
+<
+Next, you'll need to set a couple global variables in your |:vimrc|.
+
+------------------------------------------------------------------------
+2.1 g:lifedash_map_prefix                           *lifedash_map_prefix*
+
+LifeDash is mostly a list of mappings, so you should probably set your
+own map prefix in your |:vimrc| like so:
+>
+    let g:lifedash_map_prefix = '<your_prefix>'
+<
+It defaults to <Leader>.  If you haven't set <Leader>, the default is
+backslash ('\').
+
+------------------------------------------------------------------------
+2.2 g:lifedash_map_dir                                 *lifedash_map_dir*
+
+By default, LifeDash stores your data files in the 'lifedata' directory
+in the same place as the LifeData plugin.  You can change this directory
+by putting the following in your |:vimrc|
+>
+        let g:lifedash_map_dir = "<your_path>"
+<
+The checklist templates are kept in a subdirectory called, well...
+'templates'.
+
+========================================================================
+3. Usage                                                  *LifeDashUsage*
+
+------------------------------------------------------------------------
+3.1 QuickStart                                       *LifeDashQuickstart*
+
+You probably won't like the default items in the template checklists, so
+edit the files in the templates directory to suit your needs.  These are
+stored in |g:lifedash_dir|/templates  Then, open a new vim window and
+type
+>
+    <Leader>nl
+<
+in normal mode.  You should be presented with a new page as as shown in
+|LifeDashIntro|.  Don't worry, you can always delete the files from
+|g:lifedash_dir| and start over.  Also, you'll probably modify the
+templates over time as your goals change.  If you save these files, the
+next time you type <Leader>nl in a new vim window they will be reopened.
+
+------------------------------------------------------------------------
+3.2 Working with your checklists                     *LifeDashChecklists*
+
+Now, look through the mappings in |LifeDashMappings| to see what you can
+do within each of these windows.  The files are just ReStructuredText
+documents, so you might want to learn more about this format here:
+>
+    http://docutils.sourceforge.net/rst.html
+<
+Don't hesitate to edit these files however you want and ignore my
+mappings (or make your own).  My mappings just make it easy to work with
+lists of tasks formatted like this:
+>
+ - Wash car
+ - Prove Riemann hypothesis
+ - Take out recycling
+<
+I like my DAILY LOG and EXERCISE LOG to be more free-form.  I start each
+day with a |<Leader>d|, which drops in a timestamp, and then I usually
+have both a checklist planning what I'm going to do that day and prose
+noting down important things.
+
+------------------------------------------------------------------------
+3.3 The WEEKLY LOG                                    *LifeDashWeeklyLog*
+
+The WEEKLY LOG is special in that it's really a consolidation of daily
+tasks, formatted thusly:
+>
+ MTWTFSS
+ ------- Wake before 07:00
+ ------- Record weight
+ ------- Brush
+ -----   Bike
+ -----   Study
+ -----   Career
+ - ----  Exercise
+ ------- Stretching
+ ------- Shower
+ ------- Brush
+ ------- Floss
+ ------- Bed before 23:00
+
+ ------- Diet
+ ------- No solo TV
+      -  Check mail
+      -  Take trash
+      -  Take recycling
+      -  Get groceries
+      -  Do laundry
+ MTWTFSS
+<
+This format allows you to 'x' off the completion of each task each day.
+It becomes inspiring to see solid rows of 'x's all week long, and you
+become compelled not to 'break the chain', as discussed here:
+>
+    http://lifehacker.com/281626/jerry-seinfelds-productivity-secret
+<
+Most of the mappings in the |LifeDashMappings| are meant for single-line
+tasks like you see in all the windows but the WEEKLY LOG, e.g.
+>
+    - Wash car
+    - Throw baby
+    - Destroy Trogdor
+<
+In the WEEKLY LOG, I recommend using regular vim commands to replace
+'-'s with 'x's for completion, '/'s for partial completion, and '.'s
+when you completely neglect something.  '.'s are nice, since as a small
+amount of 'ink', they make the line look very empty if you neglect a
+task for several days.
+
+You'll notice in the example WEEKLY LOG above there are some lines with
+dashes every day of the week, some only select days of the week, and
+some only one day of the week.  Be creative--adapt the system to
+your needs.
+
+========================================================================
+4. Mappings                                            *LifeDashMappings*
+
+------------------------------------------------------------------------
+Populate a new LifeDash window.                              *<Leader>nl*
+                                       
+------------------------------------------------------------------------
+Paste the date in ISO format and the name of the              *<Leader>d*
+weekday in English, e.g.:
+>
+    2011-11-07 (Monday)
+<
+------------------------------------------------------------------------
+Paste the date and time in ISO format, e.g.:                  *<Leader>D*
+>
+    2011-11-07T20:58:25CST
+<
+------------------------------------------------------------------------
+Mark a task finished ('x' it), and date it, e.g.:             *<Leader>f*
+>
+    - Wash car
+<
+to
+>
+    x Wash car  2011-11-07T21:01:41CST
+<
+------------------------------------------------------------------------
+Mark a task partially completed ('/' it), and date            *<Leader>p*
+it, e.g.
+>
+    - Wash car
+<
+to
+>
+    / Wash car  2011-11-07T21:03:33CST
+<
+------------------------------------------------------------------------
+Mark a task waiting ('w' it), and date it, e.g.               *<Leader>w*
+>
+    - Wash car
+<
+to
+>
+    w Wash car  2011-11-07T21:05:04CST
+<
+Often you mark a task waiting because you have
+delegated it to someone else, in which case I like
+to add the person's name in '|'s, e.g.:
+>
+    w Wash car |John| 2011-11-07T21:05:04CST
+<
+------------------------------------------------------------------------
+Mark a task finished and move it to the bottom                *<Leader>G*
+of the document.  This is probably only useful in
+the TODO document; you use this mapping to mark
+the task finished, timestamp it, and move it to
+the bottom of the page (into the DONE section).
+
+------------------------------------------------------------------------
+'Star' a task, implying importance, or priority,     *<Leader><asterisk>*
+e.g.
+>
+    - Wash car
+<
+to
+>
+    - Wash car *
+<
+This is especially helpful when combined with the
+ability to view all starred tasks with
+|<Leader>v<asterisk>|.
+
+------------------------------------------------------------------------
+View all starred (high priority) tasks in a         *<Leader>v<asterisk>*
+quickfix window.
+
+------------------------------------------------------------------------
+View all 'waiting' tasks in a quickfix window.               *<Leader>vw*
+
+------------------------------------------------------------------------
+Open the TODO list (create a new one if none                 *<Leader>nt*
+exists), e.g.
+>
+    todo.rst
+<
+------------------------------------------------------------------------
+Open the EXERCISE LOG (create a new one if                   *<Leader>ne*
+none exists), e.g.
+>
+    exercise.rst
+<
+------------------------------------------------------------------------
+Open the DAILY LOG (create a new one if none                 *<Leader>nd*
+exists), e.g.
+>
+    todo.rst
+<
+------------------------------------------------------------------------
+Open the WEEKLY LOG named for the current                    *<Leader>nw*
+week number (create a new one if none exists),
+e.g.
+>
+    weekly-2011-W45.rst
+<
+------------------------------------------------------------------------
+Open the MONTHLY LOG named for the current                   *<Leader>nm*
+month, (create a new one if none exists), e.g.
+>
+    monthly-2011-11.rst
+<
+------------------------------------------------------------------------
+Open the YEARLY LOG named for the current                    *<Leader>ny*
+year, (create a new one if none exists), e.g.
+>
+    yearly-2011.rst
+<
+========================================================================
+5. Issues                                                *LifeDashIssues*
+
+Please see any known issues and report any you
+find on GitHub:
+>
+    https://github.com/bgrant/LifeDash
+<
+========================================================================
+6. Acknowledgements                                        *LifeDashInfo*
+
+Thanks to the authors of Vundle, Gundo, SnipMate
+and SnipMgr-- I looked at your code and your blogs
+while writing this.  Any turds in this code are of
+course my own fault.
+
+========================================================================
+7. License                                              *LifeDashLicense*
+
+Copyright 2011 Robert David Grant
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may
+not use this file except in compliance with the License.  You may obtain
+a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
 vim:tw=72:ts=8:ft=help:norl:

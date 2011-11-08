@@ -189,6 +189,9 @@ your needs.
 ========================================================================
 4. Mappings                                            *LifeDashMappings*
 
+To be clear, 'star' in in the mappings below refers to '*', a.k.a. an
+asterisk.
+
 ------------------------------------------------------------------------
 Populate a new LifeDash window.                              *<Leader>nl*
                                        
@@ -245,7 +248,7 @@ the task finished, timestamp it, and move it to
 the bottom of the page (into the DONE section).
 
 ------------------------------------------------------------------------
-'Star' a task, implying importance, or priority,     *<Leader><asterisk>*
+'Star' a task, implying importance, or priority,           *<Leader>star*
 e.g.
 >
     - Wash car
@@ -256,10 +259,10 @@ to
 <
 This is especially helpful when combined with the
 ability to view all starred tasks with
-|<Leader>v<asterisk>|.
+|<Leader>vstar|.
 
 ------------------------------------------------------------------------
-View all starred (high priority) tasks in a         *<Leader>v<asterisk>*
+View all starred (high priority) tasks in a               *<Leader>vstar*
 quickfix window.
 
 ------------------------------------------------------------------------

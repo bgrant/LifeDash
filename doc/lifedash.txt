@@ -305,18 +305,16 @@ year, (create a new one if none exists), e.g.
 ========================================================================
 5. Issues                                                *LifeDashIssues*
 
-Please see any known issues and report any you
-find on GitHub:
+Please see any known issues and report any you find on GitHub:
 >
     https://github.com/bgrant/LifeDash
 <
 ========================================================================
 6. Acknowledgements                            *LifeDashAcknowledgements*
 
-Thanks to the authors of Vundle, Gundo, SnipMate
-and SnipMgr-- I looked at your code and your blogs
-while writing this.  Any turds in this code are of
-course my own fault.
+Thanks to the authors of Vundle, Gundo, SnipMate and SnipMgr-- I looked
+at your code and your blogs while writing this.  Any turds in this code
+are of course my own fault.
 
 ========================================================================
 7. License                                              *LifeDashLicense*

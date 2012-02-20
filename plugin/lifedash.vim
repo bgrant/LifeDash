@@ -56,7 +56,7 @@ execute s:map_cmd s:mapl.'D' '"=strftime("%FT%T%Z")<CR>p'
 execute s:map_cmd s:mapl.'f' ':s/[-/wx.]/x/<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
 
 " Mark a task finished (failure/decided against) and date it
-execute s:map_cmd s:mapl.'.' ':s/[-/wx.]/x/<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
+execute s:map_cmd s:mapl.'.' ':s/[-/wx.]/./<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
 
 " Mark a task partially finished and date it
 execute s:map_cmd s:mapl.'p' ':s/[-/wx.]/\//<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
@@ -65,7 +65,7 @@ execute s:map_cmd s:mapl.'p' ':s/[-/wx.]/\//<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<C
 execute s:map_cmd s:mapl.'w :s/[-/wx.]/w/<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
 
 " Move a task to bottom of DONE list (archive it)
-execute s:map_cmd s:mapl.'a' s:mapl."ddGp''"
+execute s:map_cmd s:mapl.'a' "ddGp''"
 
 " Star a task
 execute s:map_cmd s:mapl.'*' '$a *<ESC>0:noh<CR>'

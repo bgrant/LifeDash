@@ -207,7 +207,8 @@ Paste the date and time in ISO format, e.g.:                  *<Leader>D*
     2011-11-07T20:58:25CST
 <
 ------------------------------------------------------------------------
-Mark a task finished ('x' it), and date it, e.g.:             *<Leader>f*
+Mark a task successfully finished ('x' it), and date it,      *<Leader>f*
+ e.g.:
 >
     - Wash car
 <
@@ -215,6 +216,20 @@ to
 >
     x Wash car  2011-11-07T21:01:41CST
 <
+------------------------------------------------------------------------
+Mark a task unsuccessfully finished ('.' it), and             *<Leader>.*
+date it, e.g.:
+>
+    - Wash car
+<
+to
+>
+    . Wash car  2011-11-07T21:01:41CST
+<
+This is for when you decide against completing a
+task or fail to complete a time-sensitive task,
+but still want to log that this task existed
+(instead of just deleting the line).
 ------------------------------------------------------------------------
 Mark a task partially completed ('/' it), and date            *<Leader>p*
 it, e.g.
@@ -241,11 +256,11 @@ to add the person's name in '|'s, e.g.:
     w Wash car |John| 2011-11-07T21:05:04CST
 <
 ------------------------------------------------------------------------
-Mark a task finished and move it to the bottom                *<Leader>G*
-of the document.  This is probably only useful in
-the TODO document; you use this mapping to mark
-the task finished, timestamp it, and move it to
-the bottom of the page (into the DONE section).
+Move a task it to the bottom of the document                  *<Leader>a*
+(archive it).  This is probably only useful in the
+TODO document; you use this mapping to mark the
+task finished, timestamp it, and move it to the
+bottom of the page (into the DONE section).
 
 ------------------------------------------------------------------------
 'Star' a task, implying importance, or priority,           *<Leader>star*

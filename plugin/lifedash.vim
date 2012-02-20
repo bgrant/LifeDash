@@ -52,17 +52,20 @@ execute s:map_cmd s:mapl.'d' '"=strftime("%F (%A)")<CR>p'
 " Paste date and time in ISO format
 execute s:map_cmd s:mapl.'D' '"=strftime("%FT%T%Z")<CR>p'
 
-" Mark a task finished and date it
-execute s:map_cmd s:mapl.'f' ':s/[-/wx]/x/<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
+" Mark a task finished (success) and date it
+execute s:map_cmd s:mapl.'f' ':s/[-/wx.]/x/<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
+
+" Mark a task finished (failure/decided against) and date it
+execute s:map_cmd s:mapl.'.' ':s/[-/wx.]/x/<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
 
 " Mark a task partially finished and date it
-execute s:map_cmd s:mapl.'p' ':s/[-/wx]/\//<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
+execute s:map_cmd s:mapl.'p' ':s/[-/wx.]/\//<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
 
 " Mark a task waiting and date it
-execute s:map_cmd s:mapl.'w :s/[-/wx]/w/<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
+execute s:map_cmd s:mapl.'w :s/[-/wx.]/w/<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
 
-" Mark task finished and move it to bottom of list
-execute s:map_cmd s:mapl.'G' s:mapl."fddGp''"
+" Move a task to bottom of DONE list (archive it)
+execute s:map_cmd s:mapl.'a' s:mapl."ddGp''"
 
 " Star a task
 execute s:map_cmd s:mapl.'*' '$a *<ESC>0:noh<CR>'

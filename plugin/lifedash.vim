@@ -5,7 +5,7 @@
 " :author: Robert David Grant <robert.david.grant@gmail.com>
 " 
 " :copyright:
-"   Copyright 2011 Robert David Grant
+"   Copyright 2012 Robert David Grant
 " 
 "   Licensed under the Apache License, Version 2.0 (the "License"); you
 "   may not use this file except in compliance with the License.  You

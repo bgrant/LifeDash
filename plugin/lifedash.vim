@@ -5,7 +5,7 @@
 " :author: Robert David Grant <robert.david.grant@gmail.com>
 " 
 " :copyright:
-"   Copyright 2012 Robert David Grant
+"   Copyright 2012-2015 Robert David Grant
 " 
 "   Licensed under the Apache License, Version 2.0 (the "License"); you
 "   may not use this file except in compliance with the License.  You
@@ -53,26 +53,26 @@ execute s:map_cmd s:mapl.'d' '"=strftime("%F (%A)")<CR>p'
 execute s:map_cmd s:mapl.'D' '"=strftime("%FT%T%Z")<CR>p'
 
 " Mark a task finished (success) and date it
-execute s:map_cmd s:mapl.'f' ':s/[-/wx.]/x/<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
+execute s:map_cmd s:mapl.'f' '$a  @done(<ESC>'.s:mapl.'D<ESC>)'
 
 " Mark a task finished (failure/decided against) and date it
-execute s:map_cmd s:mapl.'.' ':s/[-/wx.]/./<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
+execute s:map_cmd s:mapl.'.' '$a  @cancelled(<ESC>'.s:mapl.'D<ESC>)'
 
 " Mark a task partially finished and date it
-execute s:map_cmd s:mapl.'p' ':s/[-/wx.]/\//<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
+execute s:map_cmd s:mapl.'/' '$a  @progress(<ESC>'.s:mapl.'D<ESC>)'
 
 " Mark a task waiting and date it
-execute s:map_cmd s:mapl.'w :s/[-/wx.]/w/<CR>$a  <ESC>'.s:mapl.'D<ESC>0:noh<CR>'
+execute s:map_cmd s:mapl.'w' '$a  @waiting(<ESC>'.s:mapl.'D<ESC>)'
 
 " Move a task to bottom of DONE list (archive it)
 execute s:map_cmd s:mapl.'a' "ddGp''"
 
-" Star a task
-execute s:map_cmd s:mapl.'*' '$a *<ESC>0:noh<CR>'
+" Mark a task @today
+execute s:map_cmd s:mapl.'w' '$a  @today<ESC>'
 
-" View starred/waiting task\s
-execute s:map_cmd s:mapl.'v*' ':vimgrep /\*$/ %<CR>:botright copen<CR>:noh<CR>'
-execute s:map_cmd s:mapl.'vw' ':vimgrep /^\s\s*w/ %<CR>:botright copen<CR>:noh<CR>'
+" View today / waiting tasks
+execute s:map_cmd s:mapl.'vt' ':vimgrep /@today/ %<CR>:botright copen<CR>:noh<CR>'
+execute s:map_cmd s:mapl.'vw' ':vimgrep /@waiting/ %<CR>:botright copen<CR>:noh<CR>'
 
 " Generate new checklists
 execute s:map_cmd s:mapl.'nt' ':call EditChecklist("todo")<CR>'
@@ -90,12 +90,12 @@ execute s:map_cmd s:mapl.'nl' ':call NewLifeDash()<CR>'
 """""""""""""""""
 function! EditChecklist(name)
     let l:data_paths = {
-        \"todo": g:lifedash_dir . "/todo.rst",
-        \"exercise": g:lifedash_dir . "/exercise.rst",
-        \"daily": g:lifedash_dir . "/daily.rst",
-        \"weekly": g:lifedash_dir . "/weekly-" . strftime("%Y") . "-W" . strftime("%V") . ".rst",
-        \ "monthly": g:lifedash_dir . "/monthly-" . strftime("%Y") . "-" .  strftime("%m") . ".rst",
-        \ "yearly": g:lifedash_dir . "/yearly-" . strftime("%Y") . ".rst"}
+        \"todo": g:lifedash_dir . "/todo.yaml",
+        \"exercise": g:lifedash_dir . "/exercise.yaml",
+        \"daily": g:lifedash_dir . "/daily.yaml",
+        \"weekly": g:lifedash_dir . "/weekly-" . strftime("%Y") . "-W" . strftime("%V") . ".yaml",
+        \ "monthly": g:lifedash_dir . "/monthly-" . strftime("%Y") . "-" .  strftime("%m") . ".yaml",
+        \ "yearly": g:lifedash_dir . "/yearly-" . strftime("%Y") . ".yaml"}
     let l:path = l:data_paths[a:name]
     echo l:path
     if filereadable(l:path)
@@ -119,9 +119,4 @@ function! NewLifeDash()
     wincmd l
     split
     call EditChecklist("exercise")
-    split
-    call EditChecklist("daily")
-    wincmd l
-    split
-    call EditChecklist("weekly")
 endfunction

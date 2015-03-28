@@ -53,22 +53,22 @@ execute s:map_cmd s:mapl.'d' '"=strftime("%F (%A)")<CR>p'
 execute s:map_cmd s:mapl.'D' '"=strftime("%FT%T%Z")<CR>p'
 
 " Mark a task finished (success) and date it
-execute s:map_cmd s:mapl.'f' '$a  @done(<ESC>'.s:mapl.'D<ESC>)'
+execute s:map_cmd s:mapl.'f' '$a  @done(<ESC>'.s:mapl.'Da)<ESC>'
 
 " Mark a task finished (failure/decided against) and date it
-execute s:map_cmd s:mapl.'.' '$a  @cancelled(<ESC>'.s:mapl.'D<ESC>)'
+execute s:map_cmd s:mapl.'.' '$a  @cancelled(<ESC>'.s:mapl.'Da)<ESC>'
 
 " Mark a task partially finished and date it
-execute s:map_cmd s:mapl.'/' '$a  @progress(<ESC>'.s:mapl.'D<ESC>)'
+execute s:map_cmd s:mapl.'/' '$a  @progress(<ESC>'.s:mapl.'Da)<ESC>'
 
 " Mark a task waiting and date it
-execute s:map_cmd s:mapl.'w' '$a  @waiting(<ESC>'.s:mapl.'D<ESC>)'
+execute s:map_cmd s:mapl.'w' '$a  @waiting(<ESC>'.s:mapl.'Da)<ESC>'
 
 " Move a task to bottom of DONE list (archive it)
 execute s:map_cmd s:mapl.'a' "ddGp''"
 
 " Mark a task @today
-execute s:map_cmd s:mapl.'w' '$a  @today<ESC>'
+execute s:map_cmd s:mapl.'t' '$a  @today<ESC>'
 
 " View today / waiting tasks
 execute s:map_cmd s:mapl.'vt' ':vimgrep /@today/ %<CR>:botright copen<CR>:noh<CR>'

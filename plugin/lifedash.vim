@@ -40,7 +40,7 @@ if !exists("g:lifedash_map_prefix")
 endif
 let s:mapl = g:lifedash_map_prefix
 
-" Make sure mappings are only active in .rst files
+" Make sure mappings are only active in .yaml files
 let s:map_cmd = "nmap"
 
 
@@ -103,9 +103,9 @@ function! EditChecklist(name)
     else
         execute "edit" l:path
         if isdirectory(g:lifedash_dir . "/templates")
-            execute "0read" g:lifedash_dir . "/templates/" . a:name . ".rst"
+            execute "0read" g:lifedash_dir . "/templates/" . a:name . ".yaml"
         else
-           execute "0read" s:default_lifedash_dir . "/templates/" . a:name . ".rst"
+           execute "0read" s:default_lifedash_dir . "/templates/" . a:name . ".yaml"
        endif
     endif
 endfunction

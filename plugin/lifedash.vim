@@ -47,7 +47,7 @@ let s:map_cmd = "nmap"
 """ MAPPINGS """
 """"""""""""""""
 " Paste date in ISO format and weekday
-execute s:map_cmd s:mapl.'d' '"=strftime("%F (%A)")<CR>p'
+execute s:map_cmd s:mapl.'d' '"=strftime("%F (%A):")<CR>p'
 
 " Paste date and time in ISO format
 execute s:map_cmd s:mapl.'D' '"=strftime("%FT%T%Z")<CR>p'
@@ -56,10 +56,10 @@ execute s:map_cmd s:mapl.'D' '"=strftime("%FT%T%Z")<CR>p'
 execute s:map_cmd s:mapl.'f' '$a  @done(<ESC>'.s:mapl.'Da)<ESC>'
 
 " Mark a task finished (failure/decided against) and date it
-execute s:map_cmd s:mapl.'.' '$a  @cancelled(<ESC>'.s:mapl.'Da)<ESC>'
+execute s:map_cmd s:mapl.'x' '$a  @cancelled(<ESC>'.s:mapl.'Da)<ESC>'
 
 " Mark a task partially finished and date it
-execute s:map_cmd s:mapl.'/' '$a  @progress(<ESC>'.s:mapl.'Da)<ESC>'
+execute s:map_cmd s:mapl.'p' '$a  @progress(<ESC>'.s:mapl.'Da)<ESC>'
 
 " Mark a task waiting and date it
 execute s:map_cmd s:mapl.'w' '$a  @waiting(<ESC>'.s:mapl.'Da)<ESC>'
@@ -77,8 +77,6 @@ execute s:map_cmd s:mapl.'vw' ':vimgrep /@waiting/ %<CR>:botright copen<CR>:noh<
 " Generate new checklists
 execute s:map_cmd s:mapl.'nt' ':call EditChecklist("todo")<CR>'
 execute s:map_cmd s:mapl.'ne' ':call EditChecklist("exercise")<CR>'
-execute s:map_cmd s:mapl.'nd' ':call EditChecklist("daily")<CR>'
-execute s:map_cmd s:mapl.'nw' ':call EditChecklist("weekly")<CR>'
 execute s:map_cmd s:mapl.'nm' ':call EditChecklist("monthly")<CR>'
 execute s:map_cmd s:mapl.'ny' ':call EditChecklist("yearly")<CR>'
 
@@ -92,10 +90,8 @@ function! EditChecklist(name)
     let l:data_paths = {
         \"todo": g:lifedash_dir . "/todo.yaml",
         \"exercise": g:lifedash_dir . "/exercise.yaml",
-        \"daily": g:lifedash_dir . "/daily.yaml",
-        \"weekly": g:lifedash_dir . "/weekly-" . strftime("%Y") . "-W" . strftime("%V") . ".yaml",
-        \ "monthly": g:lifedash_dir . "/monthly-" . strftime("%Y") . "-" .  strftime("%m") . ".yaml",
-        \ "yearly": g:lifedash_dir . "/yearly-" . strftime("%Y") . ".yaml"}
+        \"monthly": g:lifedash_dir . "/monthly-" . strftime("%Y") . "-" .  strftime("%m") . ".yaml",
+        \"yearly": g:lifedash_dir . "/yearly-" . strftime("%Y") . ".yaml"}
     let l:path = l:data_paths[a:name]
     echo l:path
     if filereadable(l:path)
